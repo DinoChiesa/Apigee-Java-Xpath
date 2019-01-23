@@ -23,7 +23,31 @@ There is one callout class: `com.google.apigee.edgecallouts.xpath.ExtractXpath`.
 
 ## Usage
 
-See [the example API proxy included here](./bundle) for the implementation.
+Configure the policy like this:
+
+```xml
+<JavaCallout name='Java-Xpath-Extract'>
+  <Properties>
+    <Property name='source'>message.content</Property>
+    <Property name='xmlns:ns1'>https://xml.example.com/20190122/ns</Property>
+    <Property name='xmlns:ns2'>{xmlns_ns2}</Property>
+    <Property name='xpath:var1'>/ns1:rootElement/childelement/text</Property>
+    <Property name='xpath:var2'>{xpath2}</Property>
+  </Properties>
+  <ClassName>com.google.apigee.edgecallouts.ExtractXpath</ClassName>
+  <ResourceURL>java://edge-xpath-1.0.1.jar</ResourceURL>
+</JavaCallout>
+```
+
+Specify the important configuration that determines the operation of the policy through the Property elements.
+
+* Specify each xpath to extract with a name attribute equal to the string `xpath:` followed by the name of a _context variable_ to set with the extracted value.
+* Optionally, specify each XML namespace and its prefix with a name attribute equal to the string `xmlns:` followed by the prefix string to use. Then use that prefix string in any xpath.
+
+The values for the namespaces and the xpaths can be specified directly, or via context variables, which should be surrounded by curly braces.
+
+
+See [the example API proxy included here](./bundle) for a working sample implementation.
 
 
 ### Example
