@@ -31,7 +31,7 @@ Configure the policy like this:
     <Property name='source'>message.content</Property>
     <Property name='xmlns:ns1'>https://xml.example.com/20190122/ns</Property>
     <Property name='xmlns:ns2'>{xmlns_ns2}</Property>
-    <Property name='xpath:var1'>/ns1:rootElement/childelement/text</Property>
+    <Property name='xpath:var1'>/ns1:rootElement/childelement/text()</Property>
     <Property name='xpath:var2'>{xpath2}</Property>
   </Properties>
   <ClassName>com.google.apigee.edgecallouts.ExtractXpath</ClassName>
@@ -50,8 +50,15 @@ The values for the namespaces and the xpaths can be specified directly, or via c
 
 See [the example API proxy included here](./bundle) for a working sample implementation.
 
+Notes:
+* the xpath should resolve to one node, that can be converted to text. You can use the text() node name, to be explicit.  If your xpath resolves to a single Element, the value extracted will be converted to a string. In other words it will get the text value of the element. If the element has child elements, then you get the text value of all of those elements too.
+* If any xpath resolves to a node set that is more than one element, the variable will not be set.
+* If you use an Xpath that resolves to nothing (empty node set), the variable will not be set.
+* If you specify no Property elements with 'xpath:' as the prefix, the policy will throw an error.
+* If you employ a namespace prefix in your xpath that has not been specified in a Property with 'xmlns:', the policy will throw an error. 
 
-### Example
+
+### Working Example
 
 ```
 curl -i "https://${ORG}-${ENV}.apigee.net/xpath/extract?xpath=/tx:order/e:payment/e:creditcard/e:number/text()" -H content-type:application/xml --data-binary @./sample-data/order.xml
