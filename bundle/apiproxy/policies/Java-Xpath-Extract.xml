@@ -1,0 +1,10 @@
+<JavaCallout name='Java-Xpath-Extract'>
+  <Properties>
+    <Property name='source'>message.content</Property>
+    <Property name='xmlns:tx'>{xmlns_tx}</Property>
+    <Property name='xmlns:e'>{xmlns_e}</Property>
+    <Property name='xpath:var1'>{request.queryparam.xpath}</Property>
+  </Properties>
+  <ClassName>com.google.apigee.edgecallouts.ExtractXpath</ClassName>
+  <ResourceURL>java://edge-xpath-1.0.1.jar</ResourceURL>
+</JavaCallout>

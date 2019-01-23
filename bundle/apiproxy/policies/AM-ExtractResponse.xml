@@ -1,0 +1,15 @@
+<AssignMessage name='AM-ExtractResponse'>
+  <Remove>
+    <Headers/>
+  </Remove>
+  <Set>
+    <Payload contentType="application/json">{
+    "var1" : "{var1}",
+    "error" : "{xpath_error}",
+    "exception" : "{xpath_exception}"
+}</Payload>
+    <StatusCode>200</StatusCode>
+    <ReasonPhrase>OK</ReasonPhrase>
+  </Set>
+  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</AssignMessage>

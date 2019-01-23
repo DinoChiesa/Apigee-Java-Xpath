@@ -1,0 +1,12 @@
+<AssignMessage name='AV-Xmlns'>
+  <AssignVariable>
+    <Name>xmlns_e</Name>
+    <Value>https://example.com/20190122/entities</Value>
+  </AssignVariable>
+
+  <AssignVariable>
+    <Name>xmlns_tx</Name>
+    <Value>https://example.com/20190122/tx</Value>
+  </AssignVariable>
+
+</AssignMessage>
