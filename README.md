@@ -51,11 +51,11 @@ The values for the namespaces and the xpaths can be specified directly, or via c
 See [the example API proxy included here](./bundle) for a working sample implementation.
 
 Notes:
-* the xpath should resolve to one node, that can be converted to text. You can use the text() node name, to be explicit.  If your xpath resolves to a single Element, the value extracted will be converted to a string. In other words it will get the text value of the element. If the element has child elements, then you get the text value of all of those elements too.
-* If any xpath resolves to a node set that is more than one element, the variable will not be set.
-* If you use an Xpath that resolves to nothing (empty node set), the variable will not be set.
 * If you specify no Property elements with 'xpath:' as the prefix, the policy will throw an error.
-* If you employ a namespace prefix in your xpath that has not been specified in a Property with 'xmlns:', the policy will throw an error. 
+* Each xpath should resolve to one node, that can be converted to text. You can use the text() node name, to be explicit.  If your xpath resolves to a single Element, the value extracted will be converted to a string. In other words it will get the text value of the element. If the element has child elements, then you get the text value of all of those elements too. This is probably not what you want.
+* If any xpath resolves to a node set that has more than one element, the variable associated to that xpath will not be set.
+* If any xpath resolves to nothing (empty node set), the variable associated to that xpath will not be set.
+* If you employ a namespace prefix in any xpath that has not been specified in a Property with 'xmlns:', the policy will throw an error.
 
 
 ### Working Example
