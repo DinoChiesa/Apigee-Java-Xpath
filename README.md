@@ -41,8 +41,9 @@ Configure the policy like this:
 
 Specify the important configuration that determines the operation of the policy through the Property elements.
 
-* Specify each xpath to extract with a name attribute equal to the string `xpath:` followed by the name of a _context variable_ to set with the extracted value.
-* Optionally, specify each XML namespace and its prefix with a name attribute equal to the string `xmlns:` followed by the prefix string to use. Then use that prefix string in any xpath.
+* Specify the source as the VARIABLE NAME which contains XML to use as the source. By default the source is `message.content`. This is required.
+* Specify each xpath to extract with a name attribute equal to the string `xpath:` followed by the name of a _context variable_ to set with the extracted value. At least one xpath Property is required.
+* Optionally, specify each XML namespace and its prefix with a name attribute equal to the string `xmlns:` followed by the prefix string to use. Then you can use that prefix string in any xpath.
 
 The values for the namespaces and the xpaths can be specified directly, or via context variables, which should be surrounded by curly braces.
 
