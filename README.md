@@ -2,8 +2,11 @@
 
 This directory contains the Java source code and pom.xml file required
 to compile a simple Java callout for Apigee Edge, that performs an
-XPath extraction. This works similarly to ExtractVariables, except that the xpath itself can
-be specified in a variable.
+XPath extraction. This works similarly to ExtractVariables, except:
+
+* in this callout, the xpath itself can be specified in a variable, or a string that contains references to variables.
+* in this callout, the source can be any XML string. Need not be a message object.
+* in this callout, the XML can be version 1.1. It need not be XML version 1.0.
 
 ## Disclaimer
 
@@ -11,7 +14,7 @@ This example is not an official Google product, nor is it part of an official Go
 
 ## License
 
-This material is copyright 2018-2019, Google LLC.
+This material is copyright 2018-2020, Google LLC.
 and is licensed under the Apache 2.0 license. See the [LICENSE](LICENSE) file.
 
 This code is open source but you don't need to compile it in order to use it.
