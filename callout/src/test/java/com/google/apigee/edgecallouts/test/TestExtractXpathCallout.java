@@ -90,6 +90,15 @@ public class TestExtractXpathCallout {
         }.getMockInstance();
     }
 
+    private static final String simpleXml2 =
+    "<?xml version=\"1.1\"?>"
+          + "<Task> \n"
+          + "  <Triggers>\n"
+          + "    <EventTrigger>\n"
+          + "      <ExecutionTimeLimit>123</ExecutionTimeLimit>\n"
+          + "    </EventTrigger>\n"
+          + "  </Triggers>"
+          + "</Task>";
 
     private static final String simpleXml1 =
 "<?xml version='1.0' encoding='UTF-8'?>\n" +
@@ -417,5 +426,31 @@ public class TestExtractXpathCallout {
         Assert.assertNull(value, "variable");
         System.out.println("=========================================================");
     }
+
+    @Test
+    public void test_Xml11_Text() throws Exception {
+        String expectedExtractedValue = "123";
+        msgCtxt.setVariable("message.content", simpleXml2);
+
+        Map<String,String> props = new HashMap<String,String>();
+        props.put("source","message.content");
+        props.put("xpath:var1","/Task/Triggers/EventTrigger/ExecutionTimeLimit/text()");
+
+        ExtractXpath callout = new ExtractXpath(props);
+
+        // execute and retrieve output
+        ExecutionResult actualResult = callout.execute(msgCtxt, exeCtxt);
+        Assert.assertEquals(actualResult, ExecutionResult.SUCCESS, "result not as expected");
+        Object errorOutput = msgCtxt.getVariable("xpath_error");
+        Assert.assertNull(errorOutput, "errorOutput");
+        Object exception = msgCtxt.getVariable("xpath_exception");
+        Assert.assertNull(exception, "exception");
+        Object stacktrace = msgCtxt.getVariable("xpath_stacktrace");
+        Assert.assertNull(stacktrace, "stacktrace");
+        String value = msgCtxt.getVariable("var1");
+        Assert.assertEquals(value, expectedExtractedValue, "result not as expected");
+        System.out.println("=========================================================");
+    }
+
 
 }
