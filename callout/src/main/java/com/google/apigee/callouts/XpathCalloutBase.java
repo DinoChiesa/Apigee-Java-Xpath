@@ -13,7 +13,7 @@
 // limitations under the License.
 //
 
-package com.google.apigee.edgecallouts;
+package com.google.apigee.callouts;
 
 import com.apigee.flow.message.MessageContext;
 import com.google.apigee.util.XmlUtils;
@@ -51,9 +51,9 @@ public abstract class XpathCalloutBase {
     protected static String getStackTrace(Throwable e) {
         StringWriter sw = new StringWriter();
         e.printStackTrace(new PrintWriter(sw));
-        return sw.toString();        
+        return sw.toString();
     }
-    
+
     // protected boolean getPretty(MessageContext msgCtxt) throws Exception {
     //     String pretty = getSimpleOptionalProperty("pretty", msgCtxt);
     //     if (pretty == null) return false;

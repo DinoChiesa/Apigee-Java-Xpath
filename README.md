@@ -1,7 +1,7 @@
 # Java XPath Callout
 
 This directory contains the Java source code and pom.xml file required
-to compile a simple Java callout for Apigee Edge, that performs an
+to compile a simple Java callout for Apigee, that performs an
 XPath extraction. This works similarly to ExtractVariables, except:
 
 * in this callout, the xpath itself can be specified in a variable, or a string that contains references to variables.
@@ -14,14 +14,14 @@ This example is not an official Google product, nor is it part of an official Go
 
 ## License
 
-This material is copyright 2018-2020, Google LLC.
+This material is copyright 2018-2021, Google LLC.
 and is licensed under the Apache 2.0 license. See the [LICENSE](LICENSE) file.
 
 This code is open source but you don't need to compile it in order to use it.
 
 ## Details
 
-There is one callout class: `com.google.apigee.edgecallouts.xpath.ExtractXpath`.  It encrypts the element specified by an xpath.
+There is one callout class: `com.google.apigee.callouts.xpath.ExtractXpath`.  It encrypts the element specified by an xpath.
 
 
 ## Usage
@@ -37,8 +37,8 @@ Configure the policy like this:
     <Property name='xpath:var1'>/ns1:rootElement/childelement/text()</Property>
     <Property name='xpath:var2'>{xpath2}</Property>
   </Properties>
-  <ClassName>com.google.apigee.edgecallouts.ExtractXpath</ClassName>
-  <ResourceURL>java://edge-xpath-1.0.1.jar</ResourceURL>
+  <ClassName>com.google.apigee.callouts.ExtractXpath</ClassName>
+  <ResourceURL>java://apigee-xpath-20210409.jar</ResourceURL>
 </JavaCallout>
 ```
 

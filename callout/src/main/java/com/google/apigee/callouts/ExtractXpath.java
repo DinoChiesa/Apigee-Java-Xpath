@@ -13,7 +13,7 @@
 // limitations under the License.
 //
 
-package com.google.apigee.edgecallouts;
+package com.google.apigee.callouts;
 
 import com.apigee.flow.execution.ExecutionContext;
 import com.apigee.flow.execution.ExecutionResult;
@@ -87,13 +87,13 @@ public class ExtractXpath extends XpathCalloutBase implements Execution {
         }
         return "";
     }
-    
+
     public ExecutionResult execute (final MessageContext msgCtxt,
                                     final ExecutionContext execContext) {
         try {
             // 0. get the source document
             Document document = getDocument(msgCtxt);
-        
+
             // 1. get XPath evaluator
             XPathEvaluator xpe = getXpe(msgCtxt);
 
@@ -103,7 +103,7 @@ public class ExtractXpath extends XpathCalloutBase implements Execution {
             if (varXpathPairs.entrySet().size() < 1) {
                 throw new IllegalStateException("no xpaths provided");
             }
-            
+
             // 3. iterate through each xpath, evaluating and setting var
             for (Map.Entry<String, String> entry : varXpathPairs.entrySet()) {
                 String variableName = entry.getKey();

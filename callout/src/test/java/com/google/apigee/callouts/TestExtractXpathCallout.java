@@ -1,4 +1,4 @@
-package com.google.apigee.edgecallouts.test;
+package com.google.apigee.callouts;
 
 import java.io.InputStream;
 import java.io.IOException;
@@ -26,7 +26,6 @@ import com.apigee.flow.execution.ExecutionResult;
 import com.apigee.flow.message.MessageContext;
 import com.apigee.flow.message.Message;
 
-import com.google.apigee.edgecallouts.ExtractXpath;
 
 public class TestExtractXpathCallout {
     //private final static String testDataDir = "src/test/resources/test-data";
