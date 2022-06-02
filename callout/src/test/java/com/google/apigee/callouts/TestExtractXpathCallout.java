@@ -452,4 +452,33 @@ public class TestExtractXpathCallout {
     Assert.assertEquals(value, expectedExtractedValue, "result not as expected");
     System.out.println("=========================================================");
   }
+
+  @Test
+  public void test_ValidResult_Text2() throws Exception {
+    String expectedExtractedValue = "4";
+    msgCtxt.setVariable("message.content",
+                        "<soap:Envelope xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/' xmlns='http://eventtrigger.webservice.alerts.ctp.stp.com'> <Parameter> <ordinal>4</ordinal> <value>1647622651000</value> </Parameter> </soap:Envelope>");
+
+    Map<String, String> props = new HashMap<String, String>();
+    props.put("source", "message.content");
+    props.put("xmlns:soap", "http://schemas.xmlsoap.org/soap/envelope/");
+    props.put("xmlns:ns1", "http://eventtrigger.webservice.alerts.ctp.stp.com");
+    props.put("xpath:var1", "/soap:Envelope/ns1:Parameter/ns1:ordinal/text()");
+
+    ExtractXpath callout = new ExtractXpath(props);
+
+    // execute and retrieve output
+    ExecutionResult actualResult = callout.execute(msgCtxt, exeCtxt);
+    Assert.assertEquals(actualResult, ExecutionResult.SUCCESS, "result not as expected");
+    Object errorOutput = msgCtxt.getVariable("xpath_error");
+    Assert.assertNull(errorOutput, "errorOutput");
+    Object exception = msgCtxt.getVariable("xpath_exception");
+    Assert.assertNull(exception, "exception");
+    Object stacktrace = msgCtxt.getVariable("xpath_stacktrace");
+    Assert.assertNull(stacktrace, "stacktrace");
+    String value = msgCtxt.getVariable("var1");
+    Assert.assertEquals(value, expectedExtractedValue, "result not as expected");
+    System.out.println("=========================================================");
+  }
+
 }
